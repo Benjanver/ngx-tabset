@@ -5,13 +5,17 @@
     <div class="section-container">
       <h2>Tabs with default style</h2>
 
-      <ngx-tabset customNavClass="nav-test-class"
-                  customTabsClass="container">
+      <ngx-tabset customNavClass="nav-test-class"                  
+                  customTabsClass="container"
+                  [childTemplate]="changeTemp"
+                  [customSlider]="true">
         <ngx-tab tabTitle="About me">
           Its all about me.
         </ngx-tab>
         <ngx-tab tabTitle="Contacts"
-                 [bypassDOM]="true">
+                 [bypassDOM]="true"
+                 [customView]="{'badgeValue':07 , 'badgeClass': 'badge', 'title':'abcde'}"
+                 [simpleView]="false">
           <ng-template>
             This is content of the contacts tab
           </ng-template>
@@ -76,6 +80,10 @@
   </section>
 
 </div>
+
+<ng-template #changeTemp let-templateObject="context" >
+  <h3>{{templateObject.title}}  <span class="{{templateObject.badgeClass}}">{{ templateObject.badgeValue }}</span></h3>
+</ng-template>
 
 <footer class="footer">
   Demo using Angular {{version}}

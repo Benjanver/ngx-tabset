@@ -30,3 +30,12 @@ $tab-cursor: pointer !default;
     }
   }
 }
+
+.tab-nav-marker {
+  min-height: 4px;
+  background-color: #000;
+  position: relative;
+  transition: all .5s;
+  bottom: -56px;
+  border-bottom: 1px solid;
+}

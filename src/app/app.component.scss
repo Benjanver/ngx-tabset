@@ -39,3 +39,19 @@ h1 {
     }
   }
 }
+
+$sz-8: 0.5rem; 
+$white: white; 
+
+.badge {
+  color: $white;
+  font-weight: initial;
+  border-radius: $sz-8;
+  background-color: blue;
+}
+
+h3 {
+  font-weight: normal;
+  margin: 0px;
+  height: 19px;
+}

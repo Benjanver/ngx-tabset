@@ -9,7 +9,7 @@ import { Component, Input, ContentChild, TemplateRef } from '@angular/core';
       <div *ngIf="bypassDOM">
         <ng-container [ngTemplateOutlet]="template"></ng-container>
       </div>
-      <div *ngIf="!bypassDOM">
+      <div *ngIf="!bypassDOM">         
         <ng-content></ng-content>
       </div>
     </div>
@@ -21,5 +21,7 @@ export class TabComponent {
   @Input() public disabled = false;
   @Input() public bypassDOM = false;
   @Input() public customPaneClass: string = '';
-  @ContentChild(TemplateRef) template: TemplateRef<any>;
+  @Input() public simpleView = true;  
+  @Input() public customView: object;
+  @ContentChild(TemplateRef) public template: TemplateRef<any>;
 }
