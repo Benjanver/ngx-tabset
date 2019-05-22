@@ -5,24 +5,26 @@ import { TabComponent } from './tab';
 @Component({
   selector: 'ngx-tabset',
   template: `
-    <div style="position: absolute">
-      <div *ngIf="customSlider" class="tab-nav-marker" [style.left.px]="styleL" [style.width.px]="styleW"></div>
-      <ul class="nav-tabset"
-          [class.disable-style]="disableStyle"
-          [ngClass]="customNavClass">
-        <li *ngFor="let tab of tabs"
-            (click)="selectTab($event,tab)"
-            class="nav-tab"
-            [class.active]="tab.active"
-            [class.disabled]="tab.disabled">
-            <ng-container [ngTemplateOutlet]="tab.simpleView ? simple : complex"
-            [ngTemplateOutletContext]="{context:tab}">
-            </ng-container>
-        </li>
-      </ul>
-      <div class="tabs-container"
-          [ngClass]="customTabsClass">
-        <ng-content></ng-content>
+    <div>    
+      <div class="main-nav-tabset">
+        <div *ngIf="customSlider" class="tab-nav-marker" [style.left.px]="styleL" [style.width.px]="styleW"></div>
+        <ul class="nav-tabset"
+            [class.disable-style]="disableStyle"
+            [ngClass]="customNavClass">
+          <li *ngFor="let tab of tabs"
+              (click)="selectTab($event,tab)"
+              class="nav-tab"
+              [class.active]="tab.active"
+              [class.disabled]="tab.disabled">
+              <ng-container [ngTemplateOutlet]="tab.simpleView ? simple : complex"
+              [ngTemplateOutletContext]="{context:tab}">
+              </ng-container>
+          </li>
+        </ul>
+        <div class="tabs-container"
+            [ngClass]="customTabsClass">
+          <ng-content></ng-content>
+        </div>
       </div>
     </div>
     <ng-template #simple let-context="context">
@@ -60,10 +62,13 @@ export class TabsetComponent implements AfterContentInit, AfterViewInit {
   }
 
   public ngAfterViewInit() {
-    const tabs = document.querySelectorAll('ul .nav-tab');
-    setTimeout(() => {
-      (tabs[0] as HTMLElement).click();
-    }, 1);
+    const tabs = (Array.prototype.slice.call(document.querySelectorAll('ul .nav-tab')) as HTMLElement[]);
+    const activeTabs = tabs.filter((el) => !el.classList.contains('disabled'));
+    if (activeTabs.length > 0) {
+      setTimeout(() => {
+        activeTabs[0].click();
+      }, 1);
+    }
   }
 
   public changeSlider(ev: any) {

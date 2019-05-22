@@ -31,11 +31,25 @@ $tab-cursor: pointer !default;
   }
 }
 
+.main-nav-tabset {
+  position: relative;
+}
+
+.main-nav-tabset::before {
+  content: " ";
+  border-top: 1px solid #ccc;
+  width: 100%;
+  float: left;
+  position: relative;
+  display: block;
+  bottom: -51px;
+}
+
 .tab-nav-marker {
-  min-height: 4px;
+  min-height: 2px;
   background-color: #000;
   position: relative;
   transition: all .5s;
-  bottom: -56px;
+  bottom: -50px;
   border-bottom: 1px solid;
 }
