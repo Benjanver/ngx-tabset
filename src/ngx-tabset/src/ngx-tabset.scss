@@ -2,7 +2,7 @@ $active-tab-color: red !default;
 $default-tab-border: solid 1px transparent !default;
 $tab-border-transition-duration: 200ms !default;
 $tab-border-transition-timing-function: ease-out !default;
-$nav-tab-padding: 10px !default;
+$nav-tab-padding: 0 !default;
 $disabled-tab-opacity: .5 !default;
 $tab-cursor: pointer !default;
 
@@ -10,12 +10,16 @@ $tab-cursor: pointer !default;
   list-style: none;
   padding: 0;
   display: flex;
+  margin-bottom: 29px;
   align-items: center;
+  padding-top: 13px;
 
   .nav-tab {
+    white-space: nowrap;
     padding: $nav-tab-padding;
     border-bottom: $default-tab-border;
     transition: border $tab-border-transition-duration $tab-border-transition-timing-function;
+    margin-right: 30px;
 
     &.active {
       border-color: $active-tab-color;
@@ -35,21 +39,20 @@ $tab-cursor: pointer !default;
   position: relative;
 }
 
-.main-nav-tabset::before {
-  content: " ";
-  border-top: 1px solid #ccc;
-  width: 100%;
-  float: left;
-  position: relative;
-  display: block;
-  bottom: -51px;
-}
-
 .tab-nav-marker {
   min-height: 2px;
   background-color: #000;
   position: relative;
   transition: all .5s;
   bottom: -50px;
-  border-bottom: 1px solid;
+}
+
+.main-nav-tabset::before {
+  content: " ";
+  border-top: 1px solid #e5e5e5;
+  width: 100%;
+  float: left;
+  position: relative;
+  display: block;
+  bottom: -51px;
 }
